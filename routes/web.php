@@ -64,3 +64,11 @@ Route::get('/admin', [AdminController::class,'index']);
 Route::get('/add_user', [AdminController::class,'addUser']);
 Route::get('/list_users', [AdminController::class,'displayUsers']);
 Route::get('/edit_user', [AdminController::class,'editUser']);
+
+
+
+/**
+ * create  dashboard data  (dashboard )
+ * 
+ */
+Route::post('/save_user', [UsersController::class,'create'])->name('save_user');

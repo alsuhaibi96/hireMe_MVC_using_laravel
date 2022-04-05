@@ -11,12 +11,13 @@
 <!-- Multi Column with Form Separator -->
 <div class="card mb-4">
   <h5 class="card-header">Multi Column with Form Separator</h5>
-  <form class="card-body" action="/save_user" method="POST">
+  <form class="card-body" action="{{ route('save_user') }}" method="POST" enctype="multipart/form-data" >
+    @csrf
     <h6>1. Account Details</h6>
     <div class="row g-3">
       <div class="col-md-6">
         <label class="form-label" for="multicol-username">Username</label>
-        <input name="name" type="text" id="multicol-username" class="form-control" placeholder="john.doe" />
+        <input name="username" type="text" id="multicol-username" class="form-control" placeholder="john.doe" />
       </div>
       <div class="col-md-6">
         <label class="form-label" for="multicol-email">Email</label>
@@ -34,7 +35,6 @@
           </div>
         </div>
       </div>
-      <div class="col-md-6">
         <div class="form-password-toggle">
           <label class="form-label" for="multicol-confirm-password">user activation</label>
           <div class="input-group input-group-merge">
