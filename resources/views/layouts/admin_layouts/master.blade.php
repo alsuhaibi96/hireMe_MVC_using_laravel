@@ -49,7 +49,7 @@
     <link rel="stylesheet" href="assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
     <link rel="stylesheet" href="assets/vendor/libs/typeahead-js/typeahead.css" />
     <link rel="stylesheet" href="assets/vendor/libs/select2/select2.css" />
-<link rel="stylesheet" href="assets/vendor/libs/formvalidation/dist/css/formValidation.min.css" />
+    <link rel="stylesheet" href="assets/vendor/libs/formvalidation/dist/css/formValidation.min.css" />
 
     <!-- Page CSS -->
     
@@ -150,17 +150,17 @@
         <ul class="menu-sub">
           <li class="menu-item ">
             <a href="/list_user" class="menu-link">
-              <div data-i18n="عرض">عرض </div>
+              <div data-i18n="ادارة المستخدمين">ادارة المتسخدمين </div>
             </a>
           </li>
           <li class="menu-item">
             <a href="/newUser" class="menu-link">
-              <div data-i18n="اضافة">اضافة</div>
+              <div data-i18n="إدارة الصلاحيات">إدارة الصلاحيات</div>
             </a>
           </li>
           <li class="menu-item">
             <a href="app-user-edit.html" class="menu-link">
-              <div data-i18n="تعديل">تعديل</div>
+              <div data-i18n="إدارة الاذونات">إدارة الاذونات</div>
             </a>
           </li>
          
@@ -170,24 +170,16 @@
       <li class="menu-item  ">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
           <i class="menu-icon tf-icons bx bx-user"></i>
-          <div data-i18n=" المؤلفون ">المؤلفون</div>
+          <div data-i18n=" الوظائف ">الوظائف</div>
         </a>
         <ul class="menu-sub">
           <li class="menu-item ">
             <a href="/list_authors" class="menu-link">
-              <div data-i18n="عرض">عرض</div>
+              <div data-i18n="إدارة الوظائف">إدارة الوظائف</div>
             </a>
           </li>
-          <li class="menu-item">
-            <a href="/add_author" class="menu-link">
-              <div data-i18n="اضافة">اضافة</div>
-            </a>
-          </li>
-          <li class="menu-item">
-            <a href="/edit_author" class="menu-link">
-              <div data-i18n="تعديل">تعديل</div>
-            </a>
-          </li>
+        
+         
         </ul>
       </li>
   
@@ -195,120 +187,75 @@
       <li class="menu-item  ">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
           <i class="menu-icon tf-icons bx bx-user"></i>
-          <div data-i18n=" الناشرون ">الناشرون</div>
+          <div data-i18n="إدارة محتوى المنصة">إدارة محتوى المنصة</div>
         </a>
         <ul class="menu-sub">
-          <li class="menu-item ">
-            <a href="/list_publisher" class="menu-link">
-              <div data-i18n="عرض">عرض</div>
-            </a>
-          </li>
+        
           <li class="menu-item">
             <a href="/add_publisher" class="menu-link">
-              <div data-i18n="اضافة">اضافة</div>
+              <div data-i18n="إدارة الخدمات">إدارة الخدمات</div>
             </a>
           </li>
           <li class="menu-item">
             <a href="/edit_publisher" class="menu-link">
-              <div data-i18n="تعديل">تعديل</div>
+              <div data-i18n="إدارة الاعلانات">إدارةالاعلانات</div>
             </a>
           </li>
+         
         </ul>
       </li>
+
+
+      
       <li class="menu-item  ">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
           <i class="menu-icon tf-icons bx bx-book"></i>
-          <div data-i18n=" الكتب ">الكتب</div>
+          <div data-i18n=" إدارة محتوى الرئيسية ">إدارة محتوى الرئيسية</div>
         </a>
         <ul class="menu-sub">
           <li class="menu-item ">
             <a href="app-book-list.html" class="menu-link">
-              <div data-i18n="عرض">عرض</div>
+              <div data-i18n="Hero Section">Hero Section</div>
             </a>
           </li>
           <li class="menu-item">
             <a href="app-book-add.html" class="menu-link">
-              <div data-i18n="اضافة">اضافة</div>
+              <div data-i18n="إدارة الاحصائيات">إدارة الاحصائيات</div>
             </a>
           </li>
           <li class="menu-item">
             <a href="app-book-edit.html" class="menu-link">
-              <div data-i18n="تعديل">تعديل</div>
+              <div data-i18n="إدارة الخدمات المميزة">إدارة الخدمات المميزة</div>
             </a>
           </li>
-        </ul>
-      </li>
-      <li class="menu-item  ">
-        <a href="javascript:void(0);" class="menu-link menu-toggle">
-          <i class="menu-icon tf-icons bx bx-box"></i>
-          <div data-i18n=" العروض ">العروض</div>
-        </a>
-        <ul class="menu-sub">
-          <li class="menu-item ">
-            <a href="/list_offer" class="menu-link">
-              <div data-i18n="عرض">عرض</div>
-            </a>
-          </li>
-          <li class="menu-item">
-            <a href="/add_offer" class="menu-link">
-              <div data-i18n="اضافة">اضافة</div>
-            </a>
-          </li>
+
           <li class="menu-item">
             <a href="app-book-edit.html" class="menu-link">
-              <div data-i18n="تعديل">تعديل</div>
+              <div data-i18n="إدارة حول المنصة">إدارة حول المنصة</div>
             </a>
           </li>
         </ul>
       </li>
-      <li class="menu-item  ">
-        <a href="javascript:void(0);" class="menu-link menu-toggle">
-          <i class="menu-icon tf-icons bx bx-category"></i>
-          <div data-i18n=" الاصناف ">الاصناف</div>
-        </a>
-        <ul class="menu-sub">
-          <li class="menu-item ">
-            <a href="/categories_list" class="menu-link">
-              <div data-i18n="عرض">عرض</div>
-            </a>
-          </li>
-          <li class="menu-item">
-            <a href="add_category" class="menu-link">
-              <div data-i18n="اضافة">اضافة</div>
-            </a>
-          </li>
-          <li class="menu-item">
-            <a href="/edit_category" class="menu-link">
-              <div data-i18n="تعديل">تعديل</div>
-            </a>
-          </li>
-        </ul>
-      </li>
-   
-  
-  
+     
+      
           
       <li class="menu-item  ">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
           <i class="menu-icon tf-icons bx bx-box"></i>
-          <div data-i18n=" الطلبات ">الطلبات</div>
+          <div data-i18n=" إدارة طلبات نشر الوظائف ">إدارة طلبات نشر الوظائف</div>
         </a>
         <ul class="menu-sub">
           <li class="menu-item ">
             <a href="/" class="menu-link">
-              <div data-i18n="عرض">عرض</div>
+              <div data-i18n="إدارة الطلبات الحالية">إدارة الطلبات الحالية</div>
             </a>
           </li>
           <li class="menu-item">
             <a href="app-category-add.html" class="menu-link">
-              <div data-i18n="اضافة">اضافة</div>
+              <div data-i18n="إدارة الطلبات المعلقة">إدارة الطلبات المعلقة</div>
             </a>
           </li>
-          <li class="menu-item">
-            <a href="app-category-edit.html" class="menu-link">
-              <div data-i18n="تعديل">تعديل</div>
-            </a>
-          </li>
+        
         </ul>
       </li>
   
@@ -316,27 +263,39 @@
       <li class="menu-item  ">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
           <i class="menu-icon tf-icons bx bx-map"></i>
-          <div data-i18n=" المدن ">المدن</div>
+          <div data-i18n=" إدارة الدول والمدن ">إدارة الدول والمدن</div>
         </a>
         <ul class="menu-sub">
           <li class="menu-item ">
             <a href="/list_city" class="menu-link">
-              <div data-i18n="عرض">عرض</div>
+              <div data-i18n="إدارة الدول">إدارة الدول</div>
             </a>
           </li>
           <li class="menu-item">
             <a href="/add_city" class="menu-link">
-              <div data-i18n="اضافة">اضافة</div>
+              <div data-i18n="إدارة المدن">إدارة المدن</div>
             </a>
           </li>
-          <li class="menu-item">
-            <a href="/edit_city" class="menu-link">
-              <div data-i18n="تعديل">تعديل</div>
-            </a>
-          </li>
+          
         </ul>
       </li>
   
+      <li class="menu-item  ">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+          <i class="menu-icon tf-icons bx bx-map"></i>
+          <div data-i18n=" طلبات التواصل ">طلبات التواصل</div>
+        </a>
+        <ul class="menu-sub">
+          <li class="menu-item ">
+            <a href="/list_city" class="menu-link">
+          <div data-i18n="  إدارة طلبات التواصل">إدارة طلبات التواصل </div>
+           
+            </a>
+          </li>
+        
+          
+        </ul>
+      </li>
   
     </ul>
     

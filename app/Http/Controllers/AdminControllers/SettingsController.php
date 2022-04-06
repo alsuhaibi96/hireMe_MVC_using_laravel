@@ -4,51 +4,41 @@ namespace App\Http\Controllers\AdminControllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Role;
+use App\Models\User;
 
-class AdminController extends Controller
+
+
+class SettingsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-       return view('admin.admin');
-    }
-  
-  
-     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function displayUsers()
-    {
-       return view('admin.users');
-    }
+/**
+ * function for generating rules
+ * 
+ */
+function generateRoles(){
+    Role::create([
+        'name' => 'Super Admin',
+        'display_name' => 'مالك الموقع', // optional
+        'description' => 'مالك الموقع ', // optional
+    ]);
+    Role::create([
+        'name' => 'Contnet Admin',
+        'display_name' => 'مديرالمحتوى', // optional
+        'description' => 'مدير محتوى الموقع', // optional
+    ]);
+    Role::create([
+        'name' => 'Customer',
+        'display_name' => 'مستخدم الموقع العادي', // optional
+        
+    ]);
+    Role::create([
+        'name' => 'Vacancy',
+        'display_name' => 'الشركة المستفيدة من الموقع', // optional
+        
+    ]);
+}
+    
 
-        /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function addUser()
-    {
-       return view('admin.add_user');
-    }
-  
-
-         /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function editUser()
-    {
-       return view('admin.edit_user');
-    }
-  
     /**
      * Show the form for creating a new resource.
      *

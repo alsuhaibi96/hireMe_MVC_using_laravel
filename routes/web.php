@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminControllers\SettingsController;
 use App\Http\Controllers\AdminControllers\AdminController;
 use App\Http\Controllers\AdminControllers\HomeController;
 use App\Http\Controllers\AdminControllers\UsersController;
@@ -32,7 +33,7 @@ use App\Http\Controllers\CustomerControllers\QualificationController;
 /**
  * get and display views routes (website views)
  */
-Route::get('/', [HomeController::class,'index']);
+Route::get('/', [HomeController::class,'index'])->name('/');
 Route::get('/our_services', [HomeController::class,'viewOurServices']);
 Route::get('/login', [UsersController::class,'index']);
 Route::get('/register',[UsersController::class,'viewRegister']);
@@ -61,9 +62,7 @@ Route::get('/skills', [SkillController::class,'index']);
  * Display dasboard views routes (dashboard views)
  */
 Route::get('/admin', [AdminController::class,'index']);
-Route::get('/add_user', [AdminController::class,'addUser']);
-Route::get('/list_users', [AdminController::class,'displayUsers']);
-Route::get('/edit_user', [AdminController::class,'editUser']);
+Route::get('/users', [UsersController::class,'rolesUsersShow']);
 
 
 
@@ -71,4 +70,5 @@ Route::get('/edit_user', [AdminController::class,'editUser']);
  * create  dashboard data  (dashboard )
  * 
  */
+Route::get('/generate_roles', [SettingsController::class,'generateRoles']);
 Route::post('/save_user', [UsersController::class,'create'])->name('save_user');

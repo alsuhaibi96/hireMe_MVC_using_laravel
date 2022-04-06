@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 
-
+use App\Models\Role;
 use App\Models\User;
 
 
@@ -21,6 +21,17 @@ class UsersController extends Controller
     public function index()
     {
                 return view('login');
+    }
+/**
+     * Display a listing of roles andd users.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function rolesUsersShow()
+    {
+        $users = User::orderBy('id','DESC')->get();
+        $roles = Role::pluck('name')->all();
+        return view('admin.users', compact('users','roles'));
     }
 
 
@@ -38,23 +49,34 @@ class UsersController extends Controller
      */
     public function create(Request $request)
     {
-        Validator::validate($request->all(),[
-            'username'=>['string','required','min:3','max:10','unique:users,name'],
-            'email'=>['email','required','min:3','unique:users,email'],
-            'password'=>['required','min:5']
+        // Validator::validate($request->all(),[
+        //     'firstName'=>['string','required','min:3','max:20',],
+        //     'lastName'=>['string','required','min:3','max:20'],
+        //     'phoneNumber'=>['integer','required','min:3','max:9'],
+        //     'userName'=>['string','required','min:3','max:20','unique:users,name'],
+        //     'email'=>['email','required','min:3','unique:users,email'],
+        //     'password'=>['required','min:5']
 
 
-        ],[
-            'username.required'=>'This field is required',
-            'password.min'=>'Can not be less than 3 letters', 
-            'email.unique'=>'There is an email in the table',
-        ]);
+        // ],[
+        //     'lastName.required'=>'This field is required',
+        //     'firstName.required'=>'This field is required',
+        //     'phoneNumber.required'=>'This field is required',
+        //     'userName.required'=>'This field is required',
+        //     'password.min'=>'Can not be less than 3 letters', 
+        //     'email.unique'=>'There is an email in the table',
+        // ]);
 
         $user=new User();
-        $user->name=$request->input('username');
+        $user->first_name=$request->input('firstName');
+        $user->last_name=$request->input('lastName');
+        $user->user_name=$request->input('userName');
+        $user->phone_number=$request->input('phoneNumber');
+        $user->is_active=$request->input('isActive');
         $user->email=$request->input('email');
         $user->password= Hash::make($request->password);
         if($user->save())
+        $user->attachRoles($request->input('roles'));
         return redirect()->route('/')
         ->with(['success'=>'user created successful']);
         return back()->with(['error'=>'can not create user']);
