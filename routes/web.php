@@ -62,7 +62,11 @@ Route::get('/skills', [SkillController::class,'index']);
  * Display dasboard views routes (dashboard views)
  */
 Route::get('/admin', [AdminController::class,'index']);
-Route::get('/users', [UsersController::class,'rolesUsersShow']);
+Route::get('/users', [UsersController::class,'rolesUsersShow'])->name('users');
+Route::get('/update_user', [UsersController::class,'update'])->name('users/update');
+
+// Route::resource('users', UsersController::class);
+
 
 
 
@@ -72,3 +76,5 @@ Route::get('/users', [UsersController::class,'rolesUsersShow']);
  */
 Route::get('/generate_roles', [SettingsController::class,'generateRoles']);
 Route::post('/save_user', [UsersController::class,'create'])->name('save_user');
+Route::resource('user', UsersController::class);
+

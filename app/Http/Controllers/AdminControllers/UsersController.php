@@ -6,10 +6,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 use App\Models\Role;
 use App\Models\User;
-
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
 
 class UsersController extends Controller
 {
@@ -18,10 +20,10 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-                return view('login');
-    }
+    // public function index()
+    // {
+    //             return view('login');
+    // }
 /**
      * Display a listing of roles andd users.
      *
@@ -123,9 +125,40 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,User $user)
     {
-        //
+        $request->validate([
+             'firstName'=>'required',
+             'lastName'=>'required',
+             'phoneNumber'=>'required',
+             'email'=>'required',
+             'userName'=>'required',
+             'isActive'=>'required',
+
+        ]);
+        $userId=$request->input('id');
+        $firstName=$request->input('firstName');
+        $last_name=$request->input('lastName');
+        $user_name=$request->input('userName');
+        $phone_number=$request->input('phoneNumber');
+        $email=$request->input('email');
+        $is_active=$request->input('isActive');
+    
+
+
+
+
+
+
+
+        // $userId->update($request->all());
+        $affected = DB::table('users')
+        ->where('id', $userId)->update(['first_name' =>$firstName,'last_name'=>$last_name,'user_name'=>$user_name,'phone_number'=>$phone_number,'email'=>$email,'is_active'=>$is_active ]);
+    
+        // $userId->detachRoles($request->input('roles'));
+        return redirect()->route('users')
+        ->with(['تم'=>'تم التعديل بنجاح']);
+        return back()->with(['فشل'=>'لم يتم التعديل']);
     }
 
     /**

@@ -34,7 +34,7 @@
                   <span>{{ $role.' ,' }}</span>
                   @else
                   <span>{{ $role }}</span>
-                  <!-- comment example for branch from commit-->
+            
                 @endif
               @endforeach
                 
@@ -61,7 +61,9 @@
               <div class="dropdown">
                 <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
                 <div class="dropdown-menu">
-                  <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a>
+      <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal-update"  data-bs-id="{{ $user->id }}" data-bs-fname="{{ $user->first_name  }}" data-bs-lname="{{ $user->last_name  }}"data-bs-uname="{{ $user->user_name  }}"  data-bs-pnumber="{{ $user->phone_number  }}"data-bs-email="{{ $user->email  }}"data-bs-active="{{ $user->is_active  }}"data-bs-roles="{{ $user->roles  }}">
+       
+        <i class="bx bx-edit-alt me-1"></i> تعديل</button>
                   <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a>
                 </div>
               </div>
@@ -149,12 +151,87 @@
     </div>
   </div>
 </div>
-<!--/ Edit User Modal -->
+<!--/ add User Modal -->
 
+
+
+
+
+<!-- edit User Modal -->
+<div class="modal" id="modal-update" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg modal-simple modal-edit-user">
+    <div class="modal-content p-2 p-md-4 ">
+      <div class="modal-body">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="text-center mb-4">
+          <h3>إضافة بيانات المستخدم</h3>
+          
+        </div>
+        <form  id="" class="row g-3"  action="{{ route('user.update',$user->id)}}" method="POST" enctype="multipart/form-data">
+          @csrf
+          @method('PUT')
+          
+          <input type="hidden" id="id" name="id" class="form-control" value="id" />
+          <div class="col-12 col-md-6">
+            <label class="form-label" for="modalEditUserFirstName">الاسم الاول</label>
+            <input type="text" id="firstName" name="firstName" class="form-control" value="{{ $user->first_name }}" />
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label" for="modalEditUserLastName">اللقب</label>
+            <input type="text" id="lastName" name="lastName" class="form-control" value="{{ $user->last_name }}"/>
+          </div>
+          <div class="col-12">
+            <label class="form-label" for="modalEditUserName">اسم المستخدم</label>
+            <input type="text" id="userName" name="userName" class="form-control" value="{{ $user->user_name }}" />
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label" for="modalEditUserEmail">الايميل</label>
+            <input type="text" id="email" name="email" class="form-control" value="{{ $user->email }}"/>
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label" for="modalEditUserStatus">الحالة</label>
+            <select id="isActive" name="isActive" class="form-select" aria-label="Default select example">
+              <option selected>الحالة</option>
+              <option value="1" >مفعل</option>
+              <option value="0">غير مفعل</option>
+            </select>
+          </div>
+          
+          <div class="col-12 col-md-6">
+            <label class="form-label" for="modalEditUserPhone">رقم الهاتف</label>
+            <div class="input-group input-group-merge">
+              <span class="input-group-text">+967</span>
+              <input type="text" id="phoneNumber" name="phoneNumber" class="form-control phone-number-mask" dir="ltr" value="{{ $user->phone_number }}" />
+            </div>
+          </div>
+          <div class="col-md-6 mb-4">
+            <div>
+                <label for="select2Multiple" class="form-label @error('roles') is-invalid @enderror">Role</label>
+                <select name="roles[]" id="select2Multiple" class="select2 form-select" multiple>
+                    @if(isset($roles))
+                        @foreach($roles as $role)
+                            <option>{{ $role }}</option>
+                        @endforeach
+                    @endif
+                </select>
+                @error('roles') <span id="exampleInputEmail1-error" class="error invalid-feedback">{{ $message }}</span> @enderror
+            </div>
+        </div>
+          
+          <div class="col-12 text-center">
+            <button type="submit" class="btn btn-primary me-sm-3 me-1">تأكيد</button>
+            <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="modal" aria-label="Close">الغاء</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!--/ add User Modal -->
 
 
 <!-- Edit User Modal -->
-<div class="modal fade" id="editUser" tabindex="-1" aria-hidden="true">
+{{-- <div class="modal fade" id="editUser" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-simple modal-edit-user">
     <div class="modal-content p-3 p-md-5">
       <div class="modal-body">
@@ -262,7 +339,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> --}}
 <!--/ Edit User Modal -->
 
 @stop

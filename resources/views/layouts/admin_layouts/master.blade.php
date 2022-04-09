@@ -51,6 +51,9 @@
     <link rel="stylesheet" href="assets/vendor/libs/select2/select2.css" />
     <link rel="stylesheet" href="assets/vendor/libs/formvalidation/dist/css/formValidation.min.css" />
 
+
+
+
     <!-- Page CSS -->
     
     <!-- Helpers -->
@@ -149,7 +152,7 @@
         </a>
         <ul class="menu-sub">
           <li class="menu-item ">
-            <a href="/list_user" class="menu-link">
+            <a href="{{ url('users') }}" class="menu-link">
               <div data-i18n="ادارة المستخدمين">ادارة المتسخدمين </div>
             </a>
           </li>
@@ -1381,7 +1384,6 @@
 
   <!-- Core JS -->
   <!-- build:js assets/vendor/js/core.js -->
-  <script src="assets/vendor/libs/jquery/jquery.js"></script>
   <script src="assets/vendor/libs/popper/popper.js"></script>
   <script src="assets/vendor/js/bootstrap.js"></script>
   <script src="assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
@@ -1409,7 +1411,65 @@
 <script src="assets/js/modal-add-new-address.js"></script>
 <script src="assets/js/modal-edit-user.js"></script>
 <script src="assets/js/modal-enable-otp.js"></script>
+<script src="/assets/js/tables-datatables-extensions.js"></script>
+<script src="/assets/js/form-validation.js"></script>
+<script src="/assets/js/forms-selects.js"></script>
+<script src="/assets/js/forms-tagify.js"></script>
+<script src="/assets/js/forms-typeahead.js"></script>
+
+<script src="/assets/js/app-access-permission.js"></script>
+<script src="/assets/js/modal-add-permission.js"></script>
+<script src="/assets/js/modal-edit-permission.js"></script>
+
+<script src="/assets/js/jquery.min.js"></script>
+
+
+
+<script>
+  $(document).ready(function () {
+      $("#modal-update").on("show.bs.modal", function (e) {
+          var id = $(e.relatedTarget).data('bs-id');
+          var first_name = $(e.relatedTarget).data('bs-fname');
+          var last_name = $(e.relatedTarget).data('bs-lname');
+          var user_name = $(e.relatedTarget).data('bs-uname');
+          var phone_number = $(e.relatedTarget).data('bs-pnumber');
+          var email = $(e.relatedTarget).data('bs-email');
+          var is_active = $(e.relatedTarget).data('bs-active');
+          var roles = $(e.relatedTarget).data('bs-roles');
+
+
+        console.log(roles);
+
+          $('#id').val(id);
+          $('#firstName').val(first_name);
+          $('#lastName').val(last_name);
+          $('#userName').val(user_name);
+          $('#phoneNumber').val(phone_number);
+          $('#email').val(email);
+          $('#isActive').val(is_active);
+          $('#roless').val(roles);
+
+        // var select = document.getElementById("arr");
   
+  
+       
+        //     for (var i = 0; i < roles.length; i++) {
+        //         var optn = roles[i];
+        //         var el = document.createElement("option");
+        //         el.value = optn.name;
+        //         console.log(el.value);
+
+        //         select.appendChild(el);
+        //     }
+
+
+
+      });
+  });
+
+</script>
+
+
 </body>
 
 
