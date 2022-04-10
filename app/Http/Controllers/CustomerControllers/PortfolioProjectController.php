@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\CustomerControllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\PortfolioProject;
+use App\Models\CustomerModels\PortfolioProject;
 use Illuminate\Http\Request;
 
 class PortfolioProjectController extends Controller

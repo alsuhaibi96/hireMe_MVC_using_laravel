@@ -97,34 +97,53 @@
   
           <div class="col-12 col-md-6">
             <label class="form-label" for="modalEditUserFirstName">الاسم الاول</label>
-            <input type="text" id="modalEditUserFirstName" name="firstName" class="form-control" placeholder="عبدالرحمن" />
+            <input  type="text" id="firstName" name="firstName" class="form-control  @error('firstName') is-invalid @enderror" placeholder="عبدالرحمن"  value="{{ old('firstName') }}"/>
+            @error('firstName') <span id="exampleInputEmail1-error" class="error invalid-feedback ">{{ $message }}</span> @enderror
           </div>
           <div class="col-12 col-md-6">
             <label class="form-label" for="modalEditUserLastName">اللقب</label>
-            <input type="text" id="modalEditUserLastName" name="lastName" class="form-control" placeholder="الصهيبي" />
+            <input type="text" id="modalEditUserLastName" name="lastName" class="form-control @error('lastName') is-invalid @enderror" placeholder="الصهيبي"  value="{{ old('lastName') }}"/>
+            @error('lastName') <span id="exampleInputEmail1-error" class="error invalid-feedback ">{{ $message }}</span> @enderror
           </div>
           <div class="col-12">
             <label class="form-label" for="modalEditUserName">اسم المستخدم</label>
-            <input type="text" id="modalEditUserName" name="userName" class="form-control" placeholder="abdulrahman.96" />
+            <input type="text" id="modalEditUserName" name="userName" class="form-control @error('userName') is-invalid @enderror" placeholder="abdulrahman.96"  value="{{ old('userName') }}"/>
+            @error('userName') <span id="exampleInputEmail1-error" class="error invalid-feedback ">{{ $message }}</span> @enderror
           </div>
           <div class="col-12 col-md-6">
             <label class="form-label" for="modalEditUserEmail">الايميل</label>
-            <input type="text" id="modalEditUserEmail" name="email" class="form-control" placeholder="example@domain.com" />
+            <input type="text" id="modalEditUserEmail" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="example@domain.com"  value="{{ old('email') }}" />
+            @error('email') <span id="exampleInputEmail1-error" class="error invalid-feedback ">{{ $message }}</span> @enderror
           </div>
+          
           <div class="col-12 col-md-6">
-            <label class="form-label" for="modalEditUserStatus">الحالة</label>
+            <label class="form-label @error('isActive') is-invalid @enderror" for="modalEditUserStatus">الحالة</label>
             <select id="modalEditUserStatus" name="isActive" class="form-select" aria-label="Default select example">
+              
               <option selected>الحالة</option>
               <option value="1">مفعل</option>
               <option value="0">غير مفعل</option>
             </select>
+            @error('isActive') <span id="exampleInputEmail1-error" class="error invalid-feedback ">{{ $message }}</span> @enderror
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label" for="password">كلمة السر</label>
+            <input type="password" id="password" name="passowrd" class="form-control @error('password') is-invalid @enderror"  value="{{ old('password') }}" />
+            @error('password') <span id="exampleInputEmail1-error" class="error invalid-feedback ">{{ $message }}</span> @enderror
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label" for="password">اعد كتابة كلمة السر</label>
+            <input type="password" id="confrim_passowrd" name="confrim_passowrd" class="form-control @error('confirm_password') is-invalid @enderror"  value="{{ old('confrim_password') }}"/>
+            @error('confirm_password') <span id="exampleInputEmail1-error" class="error invalid-feedback ">{{ $message }}</span> @enderror
+           
           </div>
           
           <div class="col-12 col-md-6">
             <label class="form-label" for="modalEditUserPhone">رقم الهاتف</label>
             <div class="input-group input-group-merge">
               <span class="input-group-text">+967</span>
-              <input type="text" id="modalEditUserPhone" name="phoneNumber" class="form-control phone-number-mask" dir="ltr" placeholder="777 555 111" />
+              <input type="text" id="modalEditUserPhone" name="phoneNumber" class="form-control phone-number-mask  @error('phoneNumber') is-invalid @enderror" dir="ltr" placeholder="777 555 111"  value="{{ old('phoneNumber') }}" />
+              @error('phoneNumber') <span id="exampleInputEmail1-error" class="error invalid-feedback ">{{ $message }}</span> @enderror
             </div>
           </div>
           
@@ -196,6 +215,9 @@
               <option value="0">غير مفعل</option>
             </select>
           </div>
+
+   
+
           
           <div class="col-12 col-md-6">
             <label class="form-label" for="modalEditUserPhone">رقم الهاتف</label>

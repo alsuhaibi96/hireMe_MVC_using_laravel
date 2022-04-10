@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\CustomerControllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\Qualification;
+use App\Models\CustomerModels\Qualification;
 use Illuminate\Http\Request;
 
 class QualificationController extends Controller

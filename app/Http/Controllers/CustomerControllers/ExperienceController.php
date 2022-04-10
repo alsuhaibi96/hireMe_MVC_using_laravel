@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\CustomerControllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\Experience;
+use App\Models\CustomerModels\Experience;
 use Illuminate\Http\Request;
 
 class ExperienceController extends Controller

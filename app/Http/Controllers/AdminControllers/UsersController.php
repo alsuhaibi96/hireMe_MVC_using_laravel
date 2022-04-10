@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
-use App\Models\AdminModels\Role;
+use App\Models\Role;
 use App\Models\AdminModels\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
@@ -51,23 +51,33 @@ class UsersController extends Controller
      */
     public function create(Request $request)
     {
-        // Validator::validate($request->all(),[
-        //     'firstName'=>['string','required','min:3','max:20',],
-        //     'lastName'=>['string','required','min:3','max:20'],
-        //     'phoneNumber'=>['integer','required','min:3','max:9'],
-        //     'userName'=>['string','required','min:3','max:20','unique:users,name'],
-        //     'email'=>['email','required','min:3','unique:users,email'],
-        //     'password'=>['required','min:5']
+        Validator::validate($request->all(),[
+            'firstName'=>['string','required','min:3','max:20',],
+            'lastName'=>['string','required','min:3','max:20'],
+            'phoneNumber'=>['integer','required','min:3','max:9'],
+            'userName'=>['string','required','min:3','max:20','unique:users,name'],
+            'email'=>['email','required','min:3','unique:users,email'],
+            'password'=>['required','min:5'],
+            'confirm_password'=>['same:password'],
+            'isActive'=>['required'],
+            'roles'=>['required'],
 
 
-        // ],[
-        //     'lastName.required'=>'This field is required',
-        //     'firstName.required'=>'This field is required',
-        //     'phoneNumber.required'=>'This field is required',
-        //     'userName.required'=>'This field is required',
-        //     'password.min'=>'Can not be less than 3 letters', 
-        //     'email.unique'=>'There is an email in the table',
-        // ]);
+
+
+
+        ],[
+            'lastName.required'=>'This field is required',
+            'firstName.required'=>'This field is required',
+            'phoneNumber.required'=>'This field is required',
+            'userName.required'=>'This field is required',
+            'password.min'=>'Can not be less than 3 letters', 
+            'email.unique'=>'There is an email in the table',
+            'confirm_password.same'=>'password dont match',
+            'isActive.required'=>'This field is required',
+            'roles.required'=>'This field is required',
+
+        ]);
 
         $user=new User();
         $user->first_name=$request->input('firstName');
@@ -77,10 +87,11 @@ class UsersController extends Controller
         $user->is_active=$request->input('isActive');
         $user->email=$request->input('email');
         $user->password= Hash::make($request->password);
+        
         if($user->save())
         $user->attachRoles($request->input('roles'));
-        dd($user);
-        return redirect()->route('/')
+        // dd($user);
+        return redirect()->route('users')
         ->with(['success'=>'user created successful']);
         return back()->with(['error'=>'can not create user']);
 
