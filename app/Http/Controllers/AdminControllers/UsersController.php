@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
-use App\Models\Role;
-use App\Models\User;
+use App\Models\AdminModels\Role;
+use App\Models\AdminModels\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 
@@ -20,11 +20,11 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    // public function index()
-    // {
-    //             return view('login');
-    // }
-/**
+    public function index()
+    {
+                return view('website/login');
+    }
+    /**
      * Display a listing of roles andd users.
      *
      * @return \Illuminate\Http\Response
@@ -42,7 +42,7 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response;
      */
     public function viewRegister(){
-        return view('Signin');
+        return view('website/Signin');
     }
     /**
      *  for creating a new resource.
@@ -79,6 +79,7 @@ class UsersController extends Controller
         $user->password= Hash::make($request->password);
         if($user->save())
         $user->attachRoles($request->input('roles'));
+        dd($user);
         return redirect()->route('/')
         ->with(['success'=>'user created successful']);
         return back()->with(['error'=>'can not create user']);
@@ -146,16 +147,14 @@ class UsersController extends Controller
     
 
 
-
-
-
-
-
         // $userId->update($request->all());
         $affected = DB::table('users')
         ->where('id', $userId)->update(['first_name' =>$firstName,'last_name'=>$last_name,'user_name'=>$user_name,'phone_number'=>$phone_number,'email'=>$email,'is_active'=>$is_active ]);
-    
-        // $userId->detachRoles($request->input('roles'));
+        $userRoles=User::where('id',$userId)->get();
+      
+        $userRoles->attachRoles($request->input('roles'));
+
+        // dd($request->input('roles'));
         return redirect()->route('users')
         ->with(['تم'=>'تم التعديل بنجاح']);
         return back()->with(['فشل'=>'لم يتم التعديل']);

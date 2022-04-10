@@ -18,10 +18,10 @@
        
             @yield('content')
            
-        <script type="text/javascript" src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('assets/js/app.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/js/js/jquery-3.6.0.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/js/js/bootstrap.bundle.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/js/js/app.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/js/js/bootstrap.min.js') }}"></script>
 
     </body>
 </html>

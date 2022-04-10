@@ -3,13 +3,15 @@
     <!--nav-->
 
 @section('content')
-  
+ 
 
     <!-- Start Skills Page  -->
     <h1 class="text-center text-white">اعدادت المهارات</h1>
     <div class="container pt-5">
         <div class="table-responsive">
             <table class="main-table manage-members text-center table table-bordered">
+              
+                
                 <tr>
                     <td>ID</td>
                     <td>اسم المهارة</td>
@@ -17,61 +19,20 @@
                     <td>مستوى المهارة</td>
                     <td>التحكم</td>
                 </tr>
+                @foreach ($customer as $item)
                 <tr>
                     <td>1</td>
-                    <td>Laravel PHP Framework</td>
-                    <td>مطور مواقع</td>
-                    <td>80%</td>
+                    <td>{{ $item->name }}</td>
+                    <td>{{ $item->job }}</td>
+                    <td>{{ $item->level }}</td>
                     <td>
                         <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editModal"><i
                                 class="fa fa-edit"></i> تعديل</a>
                         <a href="#" class="btn btn-danger confirm"> <i class="fa fa-close"></i> حذف</a>
                     </td>
                 </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Flutter</td>
-                    <td>مطور هواتف</td>
-                    <td>90%</td>
-                    <td>
-                        <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editModal"><i
-                                class="fa fa-edit"></i> تعديل</a>
-                        <a href="#" class="btn btn-danger confirm"> <i class="fa fa-close"></i> حذف</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Flutter</td>
-                    <td>مطور هواتف</td>
-                    <td>90%</td>
-                    <td>
-                        <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editModal"><i
-                                class="fa fa-edit"></i> تعديل</a>
-                        <a href="#" class="btn btn-danger confirm"> <i class="fa fa-close"></i> حذف</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Flutter</td>
-                    <td>مطور هواتف</td>
-                    <td>90%</td>
-                    <td>
-                        <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editModal"><i
-                                class="fa fa-edit"></i> تعديل</a>
-                        <a href="#" class="btn btn-danger confirm"> <i class="fa fa-close"></i> حذف</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Flutter</td>
-                    <td>مطور هواتف</td>
-                    <td>90%</td>
-                    <td>
-                        <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editModal"><i
-                                class="fa fa-edit"></i> تعديل</a>
-                        <a href="#" class="btn btn-danger confirm"> <i class="fa fa-close"></i> حذف</a>
-                    </td>
-                </tr>
+            @endforeach
+               
             </table>
         </div>
         <a href="#" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i

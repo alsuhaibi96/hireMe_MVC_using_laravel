@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\CustomerControllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\Skill;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
+use App\Models\CustomerModels\CustomerProfile;
+
 
 class SkillController extends Controller
 {
@@ -15,7 +18,14 @@ class SkillController extends Controller
      */
     public function index()
     {
-        return view('profile.skills');
+        // $user = DB::table(' SELECT * FROM `customer_skills` join customer_profiles on customer_skills.customer_id=customer_profiles.id;')->where('name', 'John')->first();
+        $customer = DB::table('customer_skills')
+            ->join('customer_profiles', 'customer_skills.customer_id', '=', 'customer_profiles.id')
+            ->get();
+   
+
+
+         return view('profile.skills')->with('customer',$customer);
 
     }
 

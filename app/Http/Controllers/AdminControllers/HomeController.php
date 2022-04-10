@@ -14,7 +14,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-       return view('index');
+       return view('website/index');
     }
      /**
      * Display a listing of the the website servies.
@@ -23,7 +23,7 @@ class HomeController extends Controller
      */
     public function viewOurServices()
     {
-       return view('our-services');
+       return view('website/our-services');
     }
     
     /**

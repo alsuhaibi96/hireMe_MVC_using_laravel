@@ -14,6 +14,8 @@ use App\Http\Controllers\CustomerControllers\ExperienceController;
 use App\Http\Controllers\CustomerControllers\SkillController;
 use App\Http\Controllers\CustomerControllers\CourseController;
 use App\Http\Controllers\CustomerControllers\QualificationController;
+use App\Http\Controllers\CustomerControllers\CustomerProfileController;
+
 
 
 
@@ -47,11 +49,11 @@ Route::get('/contact_us',[ContactUsController::class,'index']);
  * Display profile views routes (profile views)
  */
 
-Route::get('/profile', [ProfileController::class,'index']);
+Route::get('/user/profile', [CustomerProfileController::class,'index'])->name('profile');
 Route::get('/qualifications', [QualificationController::class,'index']);
 Route::get('/courses', [CourseController::class,'index']);
 Route::get('/experiences', [ExperienceController::class,'index']);
-Route::get('/skills', [SkillController::class,'index']);
+Route::get('/user/skills', [SkillController::class,'index'])->name('skills');
 
 
 

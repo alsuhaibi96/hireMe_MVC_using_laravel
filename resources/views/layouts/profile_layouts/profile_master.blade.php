@@ -58,10 +58,10 @@
 
 <!-- end setting box -->
     @yield('content')
-    <script type="text/javascript" src="{{ asset('assets/js/jquery-3.5.1.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('assets/js/jquery-ui.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('assets/js/bootstrap.min.js')  }}"></script>
-    <script type="text/javascript" src="{{ asset('assets/js/dashboard-app.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/js/jquery-3.5.1.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/js/jquery-ui.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/js/bootstrap.min.js')  }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/js/dashboard-app.js') }}"></script>
  
 </body>
 </html>

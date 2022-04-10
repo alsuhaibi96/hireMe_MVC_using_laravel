@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\AdminControllers;
+namespace App\Http\Controllers\CustomerControllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\AdminModels\ContactUs;
+use App\Models\CustomerModels\CustomerProfile;
+use App\Models\AdminModels\User;
+
 use Illuminate\Http\Request;
 
-class ContactUsController extends Controller
+class CustomerProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +17,9 @@ class ContactUsController extends Controller
      */
     public function index()
     {
-       return view('website/contact-us');
+        $user=User::with('profile')->where('id',1)->get()->first();
+       
+        return view('profile.index')->with('user',$user);
     }
 
     /**
@@ -42,10 +46,10 @@ class ContactUsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\ContactUs  $contactUs
+     * @param  \App\Models\CustomerProfile  $customerProfile
      * @return \Illuminate\Http\Response
      */
-    public function show(ContactUs $contactUs)
+    public function show(CustomerProfile $customerProfile)
     {
         //
     }
@@ -53,10 +57,10 @@ class ContactUsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\ContactUs  $contactUs
+     * @param  \App\Models\CustomerProfile  $customerProfile
      * @return \Illuminate\Http\Response
      */
-    public function edit(ContactUs $contactUs)
+    public function edit(CustomerProfile $customerProfile)
     {
         //
     }
@@ -65,10 +69,10 @@ class ContactUsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\ContactUs  $contactUs
+     * @param  \App\Models\CustomerProfile  $customerProfile
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ContactUs $contactUs)
+    public function update(Request $request, CustomerProfile $customerProfile)
     {
         //
     }
@@ -76,10 +80,10 @@ class ContactUsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\ContactUs  $contactUs
+     * @param  \App\Models\CustomerProfile  $customerProfile
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ContactUs $contactUs)
+    public function destroy(CustomerProfile $customerProfile)
     {
         //
     }

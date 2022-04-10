@@ -30,7 +30,7 @@
                             <li><a class="navbar-a-color nav-link " href="{{ url('dashboard') }}"> لوحة التحكم
                                     </a></li>
 
-                                    <li><a class="navbar-a-color nav-link " href="{{ url('profile') }}"> الملف
+                                    <li><a class="navbar-a-color nav-link " href="{{ route('profile') }}"> الملف
                                         الشخصي</a></li>
                             <li><a class="navbar-a-color nav-link " href="{{ url('about_us') }}">من نحن</a></li>
 

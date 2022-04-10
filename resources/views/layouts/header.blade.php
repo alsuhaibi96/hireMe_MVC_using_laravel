@@ -22,7 +22,7 @@
                   
 
                     
-                    <li class="nav-item mx-3 pt-1"><a class="nav-link navbar-a-color" href="{{ url('profile') }}"> الملف
+                    <li class="nav-item mx-3 pt-1"><a class="nav-link navbar-a-color" href="{{ route('profile') }}"> الملف
                         الشخصي</a></li>
             <li class="nav-item mx-3 pt-1"><a class="nav-link navbar-a-color" href="{{ url('about_us') }}">من نحن</a></li>
 
@@ -43,7 +43,7 @@
                     <a href="{{ url('register') }}" class="text-decoration-none main-active">    تسجيل حساب</a>
                 </button>
                 <button class="col-5  signin-btn border-0 btn-bg-color ">
-                    <a href="{{ url('login') }}.html" class="text-decoration-none text-white">     الدخول</a>
+                    <a href="{{ url('login') }}" class="text-decoration-none text-white">     الدخول</a>
                 </button>
             </div>
                 </ul>
