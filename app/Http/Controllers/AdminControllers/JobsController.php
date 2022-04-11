@@ -17,7 +17,7 @@ class JobsController extends Controller
      */
     public function index()
     {
-        return view('website/jobs');
+        return view('website.jobs');
     }
 
 

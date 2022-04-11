@@ -44,22 +44,22 @@
                                 </div>
                                       <p class="text-muted mt-2 mb-5"> شكراً لتواجدك على منصتنا</p>
       
-                                      <form action="{{ route('logging_in') }}" method="POST" enctype="multipart/form-data">
+                                      <form autocomplete="off" action="{{ route('logging_in') }}" method="POST" enctype="multipart/form-data">
                                         @csrf
 
                                         <div class="form-group">
                                               <label for="exampleInputEmail1">الايميل الالكتروني</label>
-                                              <input name="email" type="email" class="form-control @error('email')
+                                              <input autocomplete="off" value ="" name="email" type="email" class="form-control @error('email')
                                               is-invalid
                 
-                                              @enderror" id="exampleInputEmail1">
+                                              @enderror" id="">
                                               @error('email')
                                                           <span class="error invalid-feedback">{{ $message }}</span>                                 
                                               @enderror
                                           </div>
                                           <div class="form-group mb-5">
                                               <label for="exampleInputPassword1">كلمة السر</label>
-                                              <input name="password" type='password'  class="form-control @error('email')
+                                              <input autocomplete="off" value="" name="password" type='password'  class="form-control @error('email')
                                               is-invalid
                 
                                               @enderror" id="exampleInputPassword1">

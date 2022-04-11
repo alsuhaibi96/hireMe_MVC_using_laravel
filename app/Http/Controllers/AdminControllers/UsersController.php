@@ -69,8 +69,8 @@ class UsersController extends Controller
     */
    public function viewRegisterationPage(Request $request){
     if(($request->radio1)==1)
-    return  redirect()->route('freelancer_register');
     return  redirect()->route('vacancy_register');
+    return  redirect()->route('freelancer_register');
     
     
    }
@@ -200,12 +200,14 @@ class UsersController extends Controller
            
         ]);
 
-        if(Auth::attempt(['email'=>$request->email,'password'=>$request->password])){
+        if(Auth::attempt(['email'=>$request->email,'password'=>$request->password,'is_active'=>1])){
 
             
             if(Auth::user()->hasRole('Vacancy'))
             return redirect()->route('view_jobs');
-            else 
+            
+        
+            if(Auth::user()->hasRole('Customer'))
             return redirect()->route('profile');
 
         

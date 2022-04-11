@@ -17,7 +17,10 @@ class CustomerProfileController extends Controller
      */
     public function index()
     {
-        $user=User::with('profile')->where('id',1)->get()->first();
+        $id = auth()->user()->id;
+
+// print_r($id);
+        $user=User::with('profile')->where('id',$id)->get()->first();
        
         return view('profile.index')->with('user',$user);
     }

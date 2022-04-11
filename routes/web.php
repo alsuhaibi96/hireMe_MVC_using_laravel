@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminControllers\SettingsController;
+use App\Http\Controllers\AdminControllers\AuthController;
 use App\Http\Controllers\AdminControllers\AdminController;
 use App\Http\Controllers\AdminControllers\HomeController;
 use App\Http\Controllers\AdminControllers\UsersController;
@@ -33,7 +34,7 @@ use App\Http\Controllers\CustomerControllers\CustomerProfileController;
 
 
 /**
- * get and display views routes (website views)
+ * get and display views routes (website views that should not be protected)
  */
 Route::get('/', [HomeController::class,'index'])->name('/');
 Route::get('/our_services', [HomeController::class,'viewOurServices']);
@@ -48,10 +49,7 @@ Route::get('/job_details', [JobDetailsController::class,'index']);
 Route::get('/about_us',[AboutUsController::class,'index']);
 Route::get('/contact_us',[ContactUsController::class,'index']);
 
-/**
- * Display vacancies dashboard views
- */
-Route::get('/admin/jobs',[JobsController::class,'viewJobs'])->name('view_jobs');
+
 
 
 /**
@@ -68,38 +66,64 @@ Route::post('/login', [UsersController::class,'logIn'])->name('logging_in');
 
 
 
-/**
- * Display profile views routes (profile views)
- */
-
-Route::get('/user/profile', [CustomerProfileController::class,'index'])->name('profile');
-Route::get('/qualifications', [QualificationController::class,'index']);
-Route::get('/courses', [CourseController::class,'index']);
-Route::get('/experiences', [ExperienceController::class,'index']);
-Route::get('/user/skills', [SkillController::class,'index'])->name('skills');
-
-
 
 
 
 
 /**
- * Display dasboard views routes (dashboard views)
+ * Middleware routes (protected views)
  */
-Route::get('dashboard/admin', [AdminController::class,'index'])->name('admin');
-Route::get('/users', [UsersController::class,'rolesUsersShow'])->name('users');
-Route::get('/update_user', [UsersController::class,'update'])->name('users/update');
+Route::group(['middleware'=>'auth'],function(){
 
-// Route::resource('users', UsersController::class);
+    Route::group(['middleware'=>'role:Super Admin|Contnet Admin'],function(){
+
+	  /**
+      * Display dasboard views routes (dashboard views)
+     */
+      Route::get('dashboard/admin', [AdminController::class,'index'])->name('admin');
+      Route::get('admin/users', [UsersController::class,'rolesUsersShow'])->name('users'); 
+      Route::get('/update_user', [UsersController::class,'update'])->name('users/update');
+	
+     /**
+      * create  dashboard data  (dashboard )
+      * 
+     */
+    Route::get('/generate_roles', [SettingsController::class,'generateRoles']);
+    Route::post('/save_user', [UsersController::class,'create'])->name('save_user');
+    Route::resource('user', UsersController::class);
+
+
+
+	});
+    Route::group(['middleware'=>'role:Customer'],function(){
+
+	
+		/**
+      * Display profile views routes (profile views)
+      */
+
+      Route::get('/freelancer/profile', [CustomerProfileController::class,'index'])->name('profile');
+      Route::get('/freelancer/qualifications', [QualificationController::class,'index']);
+      Route::get('/courses', [CourseController::class,'index']);
+      Route::get('/experiences', [ExperienceController::class,'index']);
+      Route::get('/user/skills', [SkillController::class,'index'])->name('skills');
 
 
 
 
-/**
- * create  dashboard data  (dashboard )
- * 
- */
-Route::get('/generate_roles', [SettingsController::class,'generateRoles']);
-Route::post('/save_user', [UsersController::class,'create'])->name('save_user');
-Route::resource('user', UsersController::class);
 
+	});
+    Route::group(['middleware'=>'role:Vacancy'],function(){
+
+	
+	/**
+    * Display vacancies dashboard views
+    */
+    Route::get('/admin/jobs',[JobsController::class,'viewJobs'])->name('view_jobs');
+
+
+	});
+	
+	Route::get('/logout',[AuthController::class,'logout'])->name('log_out');
+	
+});

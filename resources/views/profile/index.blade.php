@@ -59,6 +59,13 @@
                         <label class="card-title" >الاسم</label>
                     <li  class="col-12 bg-light ">{{ $user->first_name . ' '. $user->last_name }}</li>
 
+                    <div class="row ">
+                        <div class="container col-12">
+                        <label class="card-title" >الايميل</label>
+                    <li class="bg-light">{{ $user->email }}</li>
+                    </div>
+                    
+                    </div>
 <div class="row ">
     <div class="container col-6">
     <label class="card-title" >العنوان</label>
@@ -67,7 +74,7 @@
 <div class="col-6">
 <label class="card-title" >رقم الهاتف</label>
 
-<li  class="bg-light ">{{ $user->phone_number }}</li>
+<li  class="bg-light ">{{ (isset($user->phone_number )?$user->phone_number:'ادخل رقم الهاتف')}}</li>
 </div>
 </div>
 
@@ -75,17 +82,7 @@
     <div class="container col-6">
     <label class="card-title" >التعليم</label>
 <li class="bg-light">{{ $user->profile->education }}</li>
-</div>
-<div class="col-6">
-<label class="card-title" >سنوات الخبرة</label>
 
-<li  class="bg-light ">775474720</li>
-</div>
-
-</div><div class="row ">
-    <div class="container col-6">
-    <label class="card-title" >الايميل</label>
-<li class="bg-light">{{ $user->email }}</li>
 </div>
 <div class="col-6">
 <label class="card-title" >المسمى الوظيفي</label>
@@ -93,6 +90,12 @@
 <li  class="bg-light ">{{ $user->profile->job }}</li>
 </div>
 </div>
+{{-- <div class="col-6">
+<label class="card-title" >سنوات الخبرة</label>
+
+<li  class="bg-light ">{{ $user->profile->education }}</li>
+</div> --}}
+
                     </ul>
                     <a href="#" data-bs-toggle="modal" data-bs-target="#editModal">
                         <span class="btn btn-success col-12 py-2">
