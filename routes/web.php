@@ -37,12 +37,35 @@ use App\Http\Controllers\CustomerControllers\CustomerProfileController;
  */
 Route::get('/', [HomeController::class,'index'])->name('/');
 Route::get('/our_services', [HomeController::class,'viewOurServices']);
-Route::get('/login', [UsersController::class,'index']);
-Route::get('/register',[UsersController::class,'viewRegister']);
+Route::get('/login', [UsersController::class,'index'])->name('login');
+Route::get('/freelancer/register',[UsersController::class,'viewFreelancerRegister'])->name('freelancer_register');
+Route::get('/vacancy/register',[UsersController::class,'viewVacancyRegister'])->name('vacancy_register');
+Route::get('/registeration',[UsersController::class,'viewRegisteration'])->name('registeration');
+Route::post('/Signin',[UsersController::class,'viewRegisterationPage'])->name('Signin');
+
 Route::get('/jobs', [JobsController::class,'index']);
 Route::get('/job_details', [JobDetailsController::class,'index']);
 Route::get('/about_us',[AboutUsController::class,'index']);
 Route::get('/contact_us',[ContactUsController::class,'index']);
+
+/**
+ * Display vacancies dashboard views
+ */
+Route::get('/admin/jobs',[JobsController::class,'viewJobs'])->name('view_jobs');
+
+
+/**
+ * create freelancers and vacancies
+ */
+
+Route::post('/freelancer/create', [UsersController::class,'createFreelancer'])->name('freelancer_create');
+Route::post('/vacancy/create', [UsersController::class,'createVacancy'])->name('vacancy_create');
+
+/**
+ * logging in 
+ */
+Route::post('/login', [UsersController::class,'logIn'])->name('logging_in');
+
 
 
 /**
@@ -63,7 +86,7 @@ Route::get('/user/skills', [SkillController::class,'index'])->name('skills');
 /**
  * Display dasboard views routes (dashboard views)
  */
-Route::get('/admin', [AdminController::class,'index']);
+Route::get('dashboard/admin', [AdminController::class,'index'])->name('admin');
 Route::get('/users', [UsersController::class,'rolesUsersShow'])->name('users');
 Route::get('/update_user', [UsersController::class,'update'])->name('users/update');
 

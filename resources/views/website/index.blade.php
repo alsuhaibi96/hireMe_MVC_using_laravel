@@ -82,7 +82,7 @@ The main header
                <div class="col-7  d-none  d-sm-none  d-lg-block ">
             <div class="row   justify-content-end col-12">
                 <button class="col-5  m-2 signup-btn btn-bg-color  ">
-                    <a href="{{ url('register') }} " class="text-decoration-none main-active">    تسجيل حساب</a>
+                    <a href="{{ route('registeration') }} " class="text-decoration-none main-active">    تسجيل حساب</a>
                 </button>
                 <button class="col-5 m-2 signin-btn border-0 btn-bg-color ">
                     <a href="{{ url('login') }}" class="text-decoration-none text-white">     الدخول</a>

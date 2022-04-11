@@ -6,8 +6,9 @@
 @section('content') 
 
 @include('layouts.header')
-    <!--Main Content-->
-    <main class="py-4 my-5">
+    <!--Main -->
+
+    <main class="py-4 my-5 pt-5 mt-5">
         <div id="main-wrapper" class="container">
           <div class="row justify-content-center">
               <div class="">
@@ -20,27 +21,59 @@
                                           <h3 class="h4 font-weight-bold text-theme">تسجيل الدخول</h3>
                                       </div>
       
-                                      <h6 class="h5 mb-0">مرحباً بك من جديد !</h6>
+                                      <div class=" mb-0">
+                                          @if(session()->has('success'))
+
+                                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                            <strong>نجاح!</strong>     {{ session()->get('success') }}
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                          </div>
+                                        
+                                        
+                                    @endif
+
+                                    @if(session()->has('message'))
+
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        <strong>فشل!</strong>     {{ session()->get('message') }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                      </div>
+                                    
+                                    
+                                @endif
+                                </div>
                                       <p class="text-muted mt-2 mb-5"> شكراً لتواجدك على منصتنا</p>
       
-                                      <form>
-                                          <div class="form-group">
+                                      <form action="{{ route('logging_in') }}" method="POST" enctype="multipart/form-data">
+                                        @csrf
+
+                                        <div class="form-group">
                                               <label for="exampleInputEmail1">الايميل الالكتروني</label>
-                                              <input type="email" class="form-control" id="exampleInputEmail1">
+                                              <input name="email" type="email" class="form-control @error('email')
+                                              is-invalid
+                
+                                              @enderror" id="exampleInputEmail1">
+                                              @error('email')
+                                                          <span class="error invalid-feedback">{{ $message }}</span>                                 
+                                              @enderror
                                           </div>
                                           <div class="form-group mb-5">
                                               <label for="exampleInputPassword1">كلمة السر</label>
-                                              <input type='password'  class="form-control" id="exampleInputPassword1">
-                                          </div>
-                                          <p>لا امتلك حساب ? <span><a href='signin.html'>تسجيل حساب</a></span></p>
-                                          <a href='assets/views/dashbord/index.html' type="submit" class="btn btn-theme">الدخول</a>
+                                              <input name="password" type='password'  class="form-control @error('email')
+                                              is-invalid
+                
+                                              @enderror" id="exampleInputPassword1">
+                                              @error('password') <span id="exampleInputEmail1-error" class="error invalid-feedback ">{{ $message }}</span> @enderror
+                                            </div>
+                                          <p>لا امتلك حساب ? <span><a href='{{ route('registeration') }}'>تسجيل حساب</a></span></p>
+                                          <button  type="submit" class="btn btn-theme">الدخول</button>
                                       </form>
                                   </div>
                               </div>
       
                               <div class="col-lg-6 d-none d-lg-inline-block">
                                 <div class="account-block  rounded-right">
-                                    <div class="overlay rounded-right" style=" background-image: url('assets/images/signin-login-vectors/pc.svg');
+                                    <div class="overlay rounded-right" style=" background-image: url('/assets/images/signin-login-vectors/pc.svg');
                                     background-size: cover;"></div>
                                  
                                 </div>

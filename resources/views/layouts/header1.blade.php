@@ -26,7 +26,7 @@
                         </a>
                         <ul class="dropdown-menu border-0 navbar-bg " aria-labelledby="navbarDropdown">
                             <li><a class="navbar-a-color nav-link d-lg-none" href="{{ url('login') }}"> تسجيل الدخول</a></li>
-                            <li><a class="navbar-a-color nav-link d-lg-none" href="{{ url('register') }}">تسجيل حساب</a></li>
+                            <li><a class="navbar-a-color nav-link d-lg-none" href="{{ route('registeration') }}">تسجيل حساب</a></li>
                             <li><a class="navbar-a-color nav-link " href="{{ url('dashboard') }}"> لوحة التحكم
                                     </a></li>
 

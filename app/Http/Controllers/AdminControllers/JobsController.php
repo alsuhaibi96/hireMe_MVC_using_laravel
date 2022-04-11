@@ -5,6 +5,8 @@ namespace App\Http\Controllers\AdminControllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\VacancyModels\JobDetails;
+
 
 class JobsController extends Controller
 {
@@ -17,6 +19,19 @@ class JobsController extends Controller
     {
         return view('website/jobs');
     }
+
+
+     /**
+     * Display a listing of the resource for vacancy admin.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function viewJobs()
+    {      $jobs = JobDetails::orderBy('id','DESC')->get();
+        
+        return view('vacancy/list_jobs')->with('jobs',$jobs);
+    }
+
 
     /**
      * Show the form for creating a new resource.

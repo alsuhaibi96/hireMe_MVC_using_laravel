@@ -41,9 +41,95 @@ class UsersController extends Controller
      * Display register view
      * @return \Illuminate\Http\Response;
      */
-    public function viewRegister(){
-        return view('website/Signin');
+    public function viewFreelancerRegister(){
+        return view('website/freelancer_signup');
     }
+    
+    /**
+     * Display register view
+     * @return \Illuminate\Http\Response;
+     */
+    public function viewVacancyRegister(){
+        return view('website/vacancy_signup');
+    }
+    
+    /**
+     * Display registeration view ( user or vacancy)
+     * 
+     */
+
+   public function viewRegisteration(){
+       return view('website/registeration');
+
+   }
+
+   /**
+    *  Check for user radio input if 1 register as a freelancer if not register as a vacancy
+
+    */
+   public function viewRegisterationPage(Request $request){
+    if(($request->radio1)==1)
+    return  redirect()->route('freelancer_register');
+    return  redirect()->route('vacancy_register');
+    
+    
+   }
+
+
+   /** create freelancer method
+    * 
+    */
+    public function createFreelancer(Request $request){
+      return  $this->addVacancyFreelancer($request,'Customer');
+    }
+
+ /** create freelancer method
+    * 
+    */
+    public function createVacancy(Request $request){
+        return  $this->addVacancyFreelancer($request,'Vacancy');
+      }
+
+
+        /** create freelancer or vacancy method
+    * 
+    */
+    public function addVacancyFreelancer (Request $request , $roleName){
+        Validator::validate($request->all(),[
+            'firstName'=>['string','required','min:3','max:20',],
+            'lastName'=>['string','required','min:3','max:20'],
+            'email'=>['email','required','min:3','unique:users,email'],
+            'password'=>['required','min:5','same:confirm_password'],
+            
+
+
+        ],[
+            'lastName.required'=>'This field is required',
+            'firstName.required'=>'This field is required',
+            'password.min'=>'Can not be less than 3 letters', 
+            'email.unique'=>'There is an email in the table',
+            'confirm_password.same'=>'password do not match',
+
+        ]);
+
+
+        
+        $user=new User();
+        $user->first_name=$request->input('firstName');
+        $user->last_name=$request->input('lastName');
+        $user->email=$request->input('email');
+        $user->password= Hash::make($request->password);
+        
+        if($user->save()){
+            $user->attachRole($roleName);
+        return redirect()->route('login')
+        ->with(['success'=>' 
+        قم بتسجيل الدخول !          
+        ']);
+        return back()->with(['error'=>'خطأ في التسجيل']);
+        }
+    }
+
     /**
      *  for creating a new resource.
      *
@@ -97,6 +183,42 @@ class UsersController extends Controller
 
     }
 
+
+       /**
+        * login to the system and redirect according to the role name
+        */
+       public function logIn(Request $request){
+        
+        Validator::validate($request->all(),[
+            'email'=>['email','required','min:3','max:50'],
+            'password'=>['required','min:5']
+
+
+        ],[
+            'email.required'=>'This field is required',
+            'password.required'=>'This field is required', 
+           
+        ]);
+
+        if(Auth::attempt(['email'=>$request->email,'password'=>$request->password])){
+
+            
+            if(Auth::user()->hasRole('Vacancy'))
+            return redirect()->route('view_jobs');
+            else 
+            return redirect()->route('profile');
+
+        
+        }
+        else {
+            return redirect()->route('login')->with(['message'=>
+'تأكد من إدخال بياناتك بشكل صحيح'  
+
+        ]);
+        }
+
+        
+       }
     /**
      * Store a newly created resource in storage.
      *
