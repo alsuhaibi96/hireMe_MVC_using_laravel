@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('university');
             $table->string('address');
             $table->string('education');
+            
             $table->string('job');
             $table->unsignedBigInteger('user_id')->unique();
             $table->timestamps();
