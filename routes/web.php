@@ -16,6 +16,8 @@ use App\Http\Controllers\CustomerControllers\SkillController;
 use App\Http\Controllers\CustomerControllers\CourseController;
 use App\Http\Controllers\CustomerControllers\QualificationController;
 use App\Http\Controllers\CustomerControllers\CustomerProfileController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+
 
 
 
@@ -124,6 +126,27 @@ Route::group(['middleware'=>'auth'],function(){
 
 	});
 	
-	Route::get('/logout',[AuthController::class,'logout'])->name('log_out');
+  
+
+    Route::get('/logout',[AuthController::class,'logout'])->name('log_out');
 	
 });
+Route::post('/forgot-password', function (Request $request) {
+    $request->validate(['email' => 'required|email']);
+ 
+    $status = Password::sendResetLink(
+        $request->only('email')
+    );
+ 
+    return $status === Password::RESET_LINK_SENT
+                ? back()->with(['status' => __($status)])
+                : back()->withErrors(['email' => __($status)]);
+})->middleware('guest')->name('password.email');
+
+Route::get('forget-password', [ForgotPasswordController::class, 'ForgetPassword'])->name('ForgetPasswordGet');
+Route::post('forget-password', [ForgotPasswordController::class, 'ForgetPasswordStore'])->name('ForgetPasswordPost');
+Route::get('reset-password/{token}', [ForgotPasswordController::class, 'ResetPassword'])->name('ResetPasswordGet');
+Route::post('reset-password', [ForgotPasswordController::class, 'ResetPasswordStore'])->name('ResetPasswordPost');
+// Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

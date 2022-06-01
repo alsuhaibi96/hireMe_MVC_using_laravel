@@ -69,7 +69,12 @@
 <div class="row ">
     <div class="container col-6">
     <label class="card-title" >العنوان</label>
+@if(!isset($user->profile->address))
+<li class="bg-light">العنوان</li>
+
+@else
 <li class="bg-light">{{ $user->profile->address }}</li>
+@endif
 </div>
 <div class="col-6">
 <label class="card-title" >رقم الهاتف</label>
@@ -81,13 +86,23 @@
 <div class="row ">
     <div class="container col-6">
     <label class="card-title" >التعليم</label>
-<li class="bg-light">{{ $user->profile->education }}</li>
+    @if(!isset($user->profile->education))
+    <li class="bg-light">التعليم</li>
+    
+    @else
+    <li class="bg-light">{{ $user->profile->education }}</li>
+    @endif
 
 </div>
 <div class="col-6">
 <label class="card-title" >المسمى الوظيفي</label>
 
-<li  class="bg-light ">{{ $user->profile->job }}</li>
+@if(!isset($user->profile->job))
+    <li class="bg-light">الوظيفة</li>
+    
+    @else
+    <li class="bg-light">{{ $user->profile->job }}</li>
+    @endif
 </div>
 </div>
 {{-- <div class="col-6">

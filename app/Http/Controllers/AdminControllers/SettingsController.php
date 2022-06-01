@@ -4,13 +4,26 @@ namespace App\Http\Controllers\AdminControllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\Models\Role;
+use App\Rules\MatchOldPassword;
 use App\Models\AdminModels\User;
 
 
 
 class SettingsController extends Controller
 {
+
+     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+   
 /**
  * function for generating rules
  * 
@@ -57,7 +70,15 @@ function generateRoles(){
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'current_password' => ['required', new MatchOldPassword],
+            'new_password' => ['required'],
+            'new_confirm_password' => ['same:new_password'],
+        ]);
+   
+        User::find(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
+   
+        dd('Password change successfully.');
     }
 
     /**
@@ -103,5 +124,15 @@ function generateRoles(){
     public function destroy($id)
     {
         //
+    }
+
+
+    /**
+     * 
+     * Reset password method (opens the view)
+     */
+    public function resetPassword(){
+    return view('website.reset-password');
+
     }
 }

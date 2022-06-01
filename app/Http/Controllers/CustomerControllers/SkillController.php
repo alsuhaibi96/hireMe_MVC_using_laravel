@@ -20,7 +20,8 @@ class SkillController extends Controller
     {
         // $user = DB::table(' SELECT * FROM `customer_skills` join customer_profiles on customer_skills.customer_id=customer_profiles.id;')->where('name', 'John')->first();
         $customer = DB::table('customer_skills')
-            ->join('customer_profiles', 'customer_skills.customer_id', '=', 'customer_profiles.id')
+            ->join('customer_profiles', 'customer_skills.customer_id',
+             '=', 'customer_profiles.id')
             ->get();
    
 

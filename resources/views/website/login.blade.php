@@ -48,7 +48,7 @@
                                         @csrf
 
                                         <div class="form-group">
-                                              <label for="exampleInputEmail1">الايميل الالكتروني</label>
+                                              <label for="">الايميل الالكتروني</label>
                                               <input autocomplete="off" value ="" name="email" type="email" class="form-control @error('email')
                                               is-invalid
                 
@@ -58,7 +58,10 @@
                                               @enderror
                                           </div>
                                           <div class="form-group mb-5">
-                                              <label for="exampleInputPassword1">كلمة السر</label>
+                                              <label for="exampleInputPassword1">كلمة المرور</label>
+                                            <span><a href='{{ route('ForgetPasswordGet') }}'>هل نسيت كلمة المرور ؟</a></span><br>
+
+                             
                                               <input autocomplete="off" value="" name="password" type='password'  class="form-control @error('email')
                                               is-invalid
                 
@@ -66,7 +69,8 @@
                                               @error('password') <span id="exampleInputEmail1-error" class="error invalid-feedback ">{{ $message }}</span> @enderror
                                             </div>
                                           <p>لا امتلك حساب ? <span><a href='{{ route('registeration') }}'>تسجيل حساب</a></span></p>
-                                          <button  type="submit" class="btn btn-theme">الدخول</button>
+                                     
+                                          <button  type="submit" class="btn btn-theme ">الدخول</button>
                                       </form>
                                   </div>
                               </div>
